@@ -1,0 +1,84 @@
+﻿@model List<ADO.HELP.Models.Inimene>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inimesed</title>
+    <style>
+        form {
+            margin-bottom: 20px;
+        }
+            form label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            form input[type="text"],
+            form input[type="number"] {
+                width: 300px;
+                padding: 5px;
+                margin-bottom: 10px;
+            }
+
+            form button {
+                padding: 5px 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inimesed List</h1>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Nimi</th>
+            <th>Vanus</th>
+            <th>Maakond</th>
+        </tr>
+        @foreach (var inimene in Model)
+        {
+            <tr>
+                <td>@inimene.Id</td>
+                <td>@inimene.Nimi</td>
+                <td>@inimene.Vanus</td>
+                <td>@inimene.Maakond</td>
+            </tr>
+        }
+    </table>
+    <form action="@Url.Action("AddInimene", "Home")" method="post">
+        <h2>Lisa Inimene</h2>
+        <label for="nimi">Nimi:</label>
+        <input type="text" id="nimi" name="nimi" required>
+        <label for="vanus">Vanus:</label>
+        <input type="number" id="vanus" name="vanus" required>
+        <label for="maakond">Maakond:</label>
+        <input type="text" id="maakond" name="maakond" required>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
